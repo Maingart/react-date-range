@@ -147,6 +147,10 @@ class Calendar extends PureComponent {
       });
     }
 
+    if (prevProps.shownDate !== this.props.shownDate) {
+      this.changeShownDate(this.props.shownDate);
+    }
+
     if (!shallowEqualObjects(prevProps.scroll, this.props.scroll)) {
       this.setState({ scrollArea: this.calcScrollArea(this.props) });
     }
@@ -493,7 +497,7 @@ class Calendar extends PureComponent {
               isVertical ? this.styles.monthsVertical : this.styles.monthsHorizontal
             )}>
             {new Array(this.props.months).fill(null).map((_, i) => {
-              let monthStep = addMonths(this.state.focusedDate, i);;
+              let monthStep = addMonths(this.state.focusedDate, i);
               if (this.props.calendarFocus === 'backwards') {
                 monthStep = subMonths(this.state.focusedDate, this.props.months - 1 - i);
               }
